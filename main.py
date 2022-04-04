@@ -8,11 +8,12 @@ def clear():
 #program choice
 while True:
   choice_program = input("Would you like to load the Mood Solver Robot, or the HECA initiative?\n")
-  if "heca" in choice_program or "HECA" in choice_program:
+  choice_program = choice_program.lower()
+  if "heca" in choice_program:
     clear()
     exec(open("heca.py").read())
     break
-  elif "mood" in choice_program or "Mood" in choice_program:
+  elif "mood" in choice_program:
     clear()
     exec(open("SashaExtraCode.py").read())
     break

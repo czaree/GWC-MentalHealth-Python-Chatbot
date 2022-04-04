@@ -34,7 +34,7 @@ if __name__ == "__main__":
   while not (current_mood.isdigit()):
   	current_mood = input("That's not in the range! Try again:\n")
   
-  info = input("Tell me something about yourself.\n")
+  info = input("I'll try my best to get rid of your sadness. But before we get to that, tell me something about yourself.\n")
   
   num = random.randint(0, 2)
   if(num == 0):
@@ -42,14 +42,14 @@ if __name__ == "__main__":
   elif(num == 1):
     print("No kidding.")
   else:
-    print("That's quite interesting.")
+    print("Hmm, that's quite interesting.")
     
   info = input("What do you think will help you cheer up the most? (FACT, JOKE, ADVICE, DONE)\n")
   info = info.upper()
     
   while info != "DONE":
     if(info == "FACT"):
-      print("Sadness is caused by the lack of chemicals that provide happiness in the brain. An excess lack of said chemical can lead to chronic depression.")
+      print("Sadness is caused by the lack of chemicals that provide happiness in the brain. An excess lack of said chemical can lead to chronic depression. This is a very watered-down explanation, so I would highly reccomend doing some of your own research if you're interested!")
     elif(info == "JOKE"):
       TellAJoke()
     elif(info == "ADVICE"):
