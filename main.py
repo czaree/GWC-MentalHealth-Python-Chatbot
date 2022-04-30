@@ -1,14 +1,50 @@
 import os
 import time
+import shutil
 #local files
 import SashaExtraCode
 import heca
 #clear the screen
 def clear():
   os.system("cls||clear")
+#possible start up animation?
+def initialize():
+  init_animation = [
+  "||                 ||",
+  "|||               |||",
+  "||||             ||||",
+  "|||||           |||||",
+  "||||||         ||||||",
+  "|||||||       |||||||",
+  "||||||||     ||||||||",
+  "|||||||||   |||||||||",
+  "|||||||||| ||||||||||",
+  "|||||||||||||||||||||",
+  "|||||||||||||||||||||",
+  "||||||||||d||||||||||",
+  "|||||||||nd |||||||||",
+  "||||||||and W||||||||",
+  "||||||| and We|||||||",
+  "||||||o and Wel||||||",
+  "|||||lo and Welc|||||",
+  "||||llo and Welco||||",
+  "|||ello and Welcom|||",
+  "||Hello and Welcome||"
+]
+  i = 0
+  for x in range(20):
+    print(init_animation[i % len(init_animation)],  end="\r")
+    #print(init_animation[i % len(init_animation)].center(shutil.get_terminal_size().columns),  end="\r")
+    #BUG - using shutil to center the animation does weird things to the display, apply w/ caution
+    time.sleep(.07)
+    i += 1
+  print("||Hello and Welcome||")
+  #print("||Hello and Welcome||".center(shutil.get_terminal_size().columns))
 #program choice
+  print("")
 while True:
-  print("== Hello and Welcome, USER. ==")
+  initialize()
+  time.sleep(.75)
   choice_program = input("Would you like to load the Mood Solver Robot, or the HECA initiative?\n")
   choice_program = choice_program.lower()
   if "heca" in choice_program:
