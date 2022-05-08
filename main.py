@@ -59,4 +59,3 @@ while True:
     print("That is not a valid program name. Please try again.")
     time.sleep(2)
     clear()
-    

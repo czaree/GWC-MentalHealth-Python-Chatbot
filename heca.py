@@ -16,6 +16,12 @@ def user_colorize(username):
   return "\033[0;38;2;85;255;85m" + username + "\033[0m"
 def heca_colorize(username):
   return "\033[0;38;2;85;255;255m" + username + "\033[0m"
+#check if user response is surrounded by a-z or numbers to avoid false positives on conversation topics
+def in_middle(string, option):
+  if not string[string.index(option)-1].isalnum() and not string[string.index(option)+len(option)].isalnum():
+    return True
+  else:
+    return false
 #script only runs if selected from main.py
 if __name__ == "__main__":
   #intro sequence
@@ -34,7 +40,7 @@ if __name__ == "__main__":
   happy_advice = [heca_colorize("heca: ") + "glad you're feeling good! make sure to get plenty of rest to keep the ball rolling.", heca_colorize("heca: ") + "that's great! keep up the good work! nothing can stop you now :)", heca_colorize("heca: ") + "i'm proud of you!! i hope the rest of your week is just as great!"]
   frustrated_advice = [heca_colorize("heca: ") + "it's okay to mess up or be unable to do things sometimes. if you're too oent up and angry, nothing good will come out of it.\n" + heca_colorize("heca: ") + "take a step back, take a deep breath, and reevalute whether to come back to the issue another time, or let it go. things will turn out alright.", heca_colorize("heca: ") + "its okay to just do the bare minimum sometimes. don't get caught up too much in the small details of things if it feels like a burden. perfection is appreciated, but never expected.", heca_colorize("heca: ") + "don't be afraid to be kind to yourself. whatever you're going through, its likely an insane amount of stress. it's okay to take a break and do something you enjoy! if it's all too much, circle back to it another time"]
   #chatloop options
-  chat_option = [["advice", "help", "encouragement"], ["stop", "no", "end", "not really", "nothing", "nah"], ["joke", "humor", "laugh"], ["chat", "talk"]]
+  chat_option = [["advice", "help", "encouragement"], ["stop", "no", "end", "not really", "nothing", "nah"], ["joke", "humor", "laugh"], ["chat", "talk"], ["fact"]]
   #joke array
   jokes = [heca_colorize("heca: ") + "why was the math teacher late to school? she took the rhombus!", heca_colorize("heca: ") + "what do you call it when dwayne johnson purchases cutting implements? rock-pays-for scissors", heca_colorize("heca: ") + "why did the bike fall over? it was two tired lol", heca_colorize("heca: ") + "so a clumsy person walks into a bar, and then a table, and then trips over the sidewalk....", heca_colorize("heca: ") + "why do seagulls only ever fly over the sea? because if they flew over the bay, they'd be bagels!", heca_colorize("heca: ") + "what's forrest gump's password? 1forrest1!"]
   #random chat lead-in
@@ -54,16 +60,16 @@ if __name__ == "__main__":
   while True:
     if conv_loop == 0:
       wait_animation()
-      conv_choose = input(heca_colorize("heca: ") + "what would you like to talk about?\n" + user_colorize(name + ": "))
-    else: 
+      conv_choose = input(heca_colorize("heca: ") + "what would you like to talk about?\n" + user_colorize(name + ": ")).lower()
+    else:
       wait_animation()
-      conv_choose = input(heca_colorize("heca: ") + "anything else on your mind?\n" + user_colorize(name + ": "))
-    if chat_option[0][0] in conv_choose or chat_option[0][1] in conv_choose or chat_option[0][2] in conv_choose:
+      conv_choose = input(heca_colorize("heca: ") + "anything else on your mind?\n" + user_colorize(name + ": ")).lower()
+    if (chat_option[0][0] in conv_choose or chat_option[0][1] in conv_choose or chat_option[0][2] in conv_choose):
       conv_loop += 1
       #advice output - asks how the user is feeling and prints the randomized response
       wait_animation()
       while True:
-        feeling = input(heca_colorize("heca: ") + "tell me then, how are you feeling today?\n" + user_colorize(name + ": "))
+        feeling = input(heca_colorize("heca: ") + "tell me then, how are you feeling today?\n" + user_colorize(name + ": ")).lower()
         if emotions[0] in feeling or emotions[4] in feeling:
           sad_choose = sad_advice[random.randrange(0, 3, 1)]
           wait_animation()
@@ -110,12 +116,18 @@ if __name__ == "__main__":
       wait_animation()
       print(rand_conv[chat_choose][chat_choose_2])
       continue
+    #fact topics
+    if chat_option[4][0] in conv_choose:
+      conv_loop +=1
+      wait_animation()
+      print(rand_conv[2][random.randrange(0, 3, 1)])
+      continue
     #when all else fails
     else:
       conv_loop += 1
       wait_animation()
-      print(heca_colorize("heca: ") + "ah, unfortunately i'm not able to do that at the moment. maybe we can try something else?")
-  
+      print(heca_colorize("heca: ") + "ah, unfortunately that's not something i know too much about. maybe we can try something else?")
+
   #end sequence
   wait_animation()
   #time-based goodbye message
@@ -148,4 +160,4 @@ if __name__ == "__main__":
   #else:
     #time_bye = "error. whoopsies lol"
   goodbyes = [time_bye, time_bye, time_bye, heca_colorize("heca: ") + " thanks for chatting with me! I'll catch you later", heca_colorize("heca: ") + "i had a great time chatting today, hope to see you again sometime soon!", heca_colorize("heca: ") + "i'm really glad that i got to talk to you today, see you later!"]
-  final = input(goodbyes[random.randrange(0, 2, 1)] + "\n" + user_colorize(name + ": "))
+  final = input(goodbyes[random.randrange(0, 2, 1)] + "\n" + user_colorize(name + ": ")).lower()
