@@ -71,22 +71,22 @@ if __name__ == "__main__":
       while True:
         feeling = input(heca_colorize("heca: ") + "tell me then, how are you feeling today?\n" + user_colorize(name + ": ")).lower()
         if emotions[0] in feeling or emotions[4] in feeling:
-          sad_choose = sad_advice[random.randrange(0, 3, 1)]
+          sad_choose = sad_advice[random.randrange(0, len(sad_advice), 1)]
           wait_animation()
           print(sad_choose)
           break
         elif emotions[1] in feeling or emotions[5] in feeling:
-          angry_choose = angry_advice[random.randrange(0, 3, 1)]
+          angry_choose = angry_advice[random.randrange(0, len(angry_advice), 1)]
           wait_animation()
           print(angry_choose)
           break
         elif emotions[2] in feeling:
-          happy_choose = happy_advice[random.randrange(0, 3, 1)]
+          happy_choose = happy_advice[random.randrange(0, len(happy_advice), 1)]
           wait_animation()
           print(happy_choose)
           break
         elif emotions[6] in feeling:
-          frustrated_choose = frustrated_advice[random.randrange(0, 3, 1)]
+          frustrated_choose = frustrated_advice[random.randrange(0, len(frustrated_advice), 1)]
           wait_animation()
           print(frustrated_choose)
           break
@@ -98,20 +98,20 @@ if __name__ == "__main__":
     if chat_option[1][0] in conv_choose or chat_option[1][1] in conv_choose or chat_option[1][2] in conv_choose or chat_option[1][3] in conv_choose or chat_option[1][4] in conv_choose or chat_option[1][5] in conv_choose:
       conv_loop += 1
       wait_animation()
-      print(end_chat[random.randrange(0, 2, 1)])
+      print(end_chat[random.randrange(0, len(end_chat), 1)])
       break
     #joke topic
     if chat_option[2][0] in conv_choose or chat_option[2][1] in conv_choose or chat_option[2][2] in conv_choose:
       conv_loop += 1
       wait_animation()
-      print(jokes[random.randrange(0, 5, 1)])
+      print(jokes[random.randrange(0, len(jokes), 1)])
       continue
     #just chatting topic
     if chat_option[3][0] in conv_choose or chat_option[3][1] in conv_choose:
       conv_loop += 1
       wait_animation()
-      chat_choose = random.randrange(0, 3, 1)
-      chat_choose_2 = random.randrange(0, 3, 1)
+      chat_choose = random.randrange(0, len(rand_conv), 1)
+      chat_choose_2 = random.randrange(0, len(rand_conv[chat_choose]), 1)
       print(rand_start[chat_choose])
       wait_animation()
       print(rand_conv[chat_choose][chat_choose_2])
@@ -120,7 +120,7 @@ if __name__ == "__main__":
     if chat_option[4][0] in conv_choose:
       conv_loop +=1
       wait_animation()
-      print(rand_conv[2][random.randrange(0, 3, 1)])
+      print(rand_conv[2][random.randrange(0, len(rand_conv[2]), 1)])
       continue
     #when all else fails
     else:
@@ -160,4 +160,4 @@ if __name__ == "__main__":
   #else:
     #time_bye = "error. whoopsies lol"
   goodbyes = [time_bye, time_bye, time_bye, heca_colorize("heca: ") + " thanks for chatting with me! I'll catch you later", heca_colorize("heca: ") + "i had a great time chatting today, hope to see you again sometime soon!", heca_colorize("heca: ") + "i'm really glad that i got to talk to you today, see you later!"]
-  final = input(goodbyes[random.randrange(0, 2, 1)] + "\n" + user_colorize(name + ": ")).lower()
+  final = input(goodbyes[random.randrange(0, len(goodbyes), 1)] + "\n" + user_colorize(name + ": ")).lower()
